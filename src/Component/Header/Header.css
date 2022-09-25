@@ -1,0 +1,21 @@
+.header {
+    background-color: #1C2B35;
+    height: 80px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 112px;
+}
+
+
+.header-menu a {
+    color: #ffffff;
+    text-decoration: none;
+    font-size: 1rem;
+    margin-left: 2rem;
+}
+
+.header-menu a:hover {
+    color: #e38b07;
+    text-decoration: underline;
+}
