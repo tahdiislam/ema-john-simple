@@ -13,3 +13,7 @@
 .product-cart{
     background-color: #FF99004D;
 }
+
+.product-cart h3 {
+    margin: 2rem 1.7rem;
+}
