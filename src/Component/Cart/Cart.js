@@ -1,4 +1,5 @@
 import React from 'react';
+import { deleteShoppingCart } from '../../utilities/fakedb';
 import './Cart.css';
 
 const Cart = ({cart}) => {
@@ -24,6 +25,9 @@ const Cart = ({cart}) => {
           <p>Total Tax: ${tax}</p>
           <h3>Grand Total: ${grandTotal}</h3>
         </div>
+        <form>
+        <button onClick={deleteShoppingCart}>Clear Cart</button>
+        </form>
       </div>
     );
 };
