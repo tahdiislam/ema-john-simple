@@ -47,20 +47,25 @@ const Shop = () => {
       setCart(newCart)
       addToDb(selectedProduct.id)
     }
+    // clear cart
+    const deleteShoppingCart = () => {
+      localStorage.removeItem("shopping-cart");
+      setCart([])
+    };
 
     return (
       <section className="shop-container">
         <div className="products">
           {products.map((product) => (
-            <Product 
-            key={product.id} 
-            product={product}
-            handlerAddToCart={handlerAddToCart}
+            <Product
+              key={product.id}
+              product={product}
+              handlerAddToCart={handlerAddToCart}
             ></Product>
           ))}
         </div>
         <div className="product-cart">
-          <Cart cart={cart}></Cart>
+          <Cart cart={cart} deleteShoppingCart={deleteShoppingCart}></Cart>
         </div>
       </section>
     );
