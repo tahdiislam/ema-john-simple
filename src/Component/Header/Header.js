@@ -9,7 +9,7 @@ const Header = () => {
           <img src={logo} alt="" />
         <div className='header-menu'>
             <Link to="/shop">Shop</Link>
-            <Link to="/order">Order Review</Link>
+            <Link to="/orders">Order Review</Link>
             <Link to="/inventory">Inventory</Link>
             <Link to="/about">About</Link>
         </div>
