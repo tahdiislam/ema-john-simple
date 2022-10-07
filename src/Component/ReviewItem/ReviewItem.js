@@ -2,12 +2,12 @@ import React from 'react';
 import './ReviewItem.css';
 import { Trash } from "react-bootstrap-icons";
 
-const ReviewItem = ({product}) => {
-    const {img, name, price, quantity, shipping} = product
+const ReviewItem = ({product, deleteProduct}) => {
+    const {id, img, name, price, quantity, shipping} = product
     console.log(product);
     return (
       <div className="product-container">
-          <img src={img} alt="Product Images" />
+        <img src={img} alt="Product Images" />
         <div className="product-info">
           <p>{name}</p>
           <p>
@@ -22,7 +22,9 @@ const ReviewItem = ({product}) => {
           </p>
         </div>
         <div>
-          <button className='delete-btn'><Trash className='delete-icon'/></button>
+          <button onClick={() => deleteProduct(id)} className="delete-btn">
+            <Trash className="delete-icon" />
+          </button>
         </div>
       </div>
     );
