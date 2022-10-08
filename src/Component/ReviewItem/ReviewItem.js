@@ -1,6 +1,9 @@
 import React from 'react';
 import './ReviewItem.css';
 import { Trash } from "react-bootstrap-icons";
+import toast, { Toaster } from "react-hot-toast";
+
+const notify = () => toast("Product deleted", { icon: "✅", duration: 1000 });
 
 const ReviewItem = ({product, deleteProduct}) => {
     const {id, img, name, price, quantity, shipping} = product
@@ -22,8 +25,15 @@ const ReviewItem = ({product, deleteProduct}) => {
           </p>
         </div>
         <div>
-          <button onClick={() => deleteProduct(id)} className="delete-btn">
+          <button
+            onClick={() => {
+              deleteProduct(id);
+              notify();
+            }}
+            className="delete-btn"
+          >
             <Trash className="delete-icon" />
+            <Toaster/>
           </button>
         </div>
       </div>
