@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { addToDb, getStoredCart } from '../../utilities/fakedb';
 import Cart from '../Cart/Cart';
 import Product from '../Product/Product';
@@ -52,6 +53,11 @@ const Shop = () => {
       localStorage.removeItem("shopping-cart");
       setCart([])
     };
+    // navigate cart review
+    const navigate = useNavigate()
+    const navigateCartReview = () => {
+      navigate('/orders')
+    }
 
     return (
       <section className="shop-container">
@@ -65,7 +71,11 @@ const Shop = () => {
           ))}
         </div>
         <div className="product-cart">
-          <Cart cart={cart} deleteShoppingCart={deleteShoppingCart}></Cart>
+          <Cart
+            cart={cart}
+            deleteShoppingCart={deleteShoppingCart}
+            navigateCartReview={navigateCartReview}
+          ></Cart>
         </div>
       </section>
     );

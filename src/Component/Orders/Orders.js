@@ -12,7 +12,9 @@ const Orders = () => {
     // console.log(cart);
     // delete cart
     const deleteShoppingCart = () => {
-        console.log('Hello World');
+        localStorage.removeItem("shopping-cart");
+        removeFromDb()
+        setCart([]);
     }
     // delete specific product 
     const deleteProduct = id => {
