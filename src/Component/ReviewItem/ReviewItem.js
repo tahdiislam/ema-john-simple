@@ -8,7 +8,7 @@ const ReviewItem = ({product, deleteProduct}) => {
     return (
       <div className="product-container">
         <img src={img} alt="Product Images" />
-        <div className="product-info">
+        <div className="cart-product-info">
           <p>{name}</p>
           <p>
             Price:

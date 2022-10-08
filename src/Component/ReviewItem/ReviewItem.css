@@ -15,16 +15,17 @@
     border-radius: 6px;
 }
 
-.product-info{
+.cart-product-info{
     margin-left: 17px;
     width: 350px;
 }
 
-.product-info p{
+.cart-product-info p{
     margin: 0;
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
+    text-align: left;
 }
 
 .price{
