@@ -8,20 +8,19 @@ const Login = () => {
         event.preventDefault()
     }
     return (
-      <div className='main-container'>
         <div className="form-container">
           <h1 className="form-title">Login</h1>
           <form onSubmit={handleFormSubmit}>
             <div className="form-control">
               <label htmlFor="email">Email</label>
-              <input type="email" name="email" id="email" />
+              <input type="email" name="email" id="email" required/>
             </div>
             <div className="form-control">
               <label htmlFor="password">Password</label>
-              <input type="password" name="password" id="password" />
+              <input type="password" name="password" id="password" required/>
             </div>
             <div className="form-control">
-              <input className="submit-btn" type="submit" value="Login" />
+              <input className="submit-btn" type="submit" value="Login"/>
             </div>
             <div className="go-register">
               <small>
@@ -33,7 +32,6 @@ const Login = () => {
             </div>
           </form>
         </div>
-      </div>
     );
 };
 
