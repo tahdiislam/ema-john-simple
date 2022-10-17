@@ -1,11 +1,14 @@
 import React, { useContext, useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../context/UserContext';
 import './Login.css'
 
 const Login = () => {
     const [error, setError] = useState('')
     const {signIn} = useContext(AuthContext)
+    const navigate = useNavigate()
+    const location = useLocation()
+    const from = location?.state?.from?.pathname || '/';
     //form submit
     const handleFormSubmit = event => {
         event.preventDefault()
@@ -20,6 +23,7 @@ const Login = () => {
             const user = result.user;
             console.log(user);
             form.reset()
+            navigate(from, {replace: true})
         })
         .catch(error => {
             console.log(error);

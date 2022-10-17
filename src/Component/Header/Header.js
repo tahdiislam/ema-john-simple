@@ -13,6 +13,7 @@ const Header = () => {
         <div className="header-menu">
           <Link to="/shop">Shop</Link>
           <Link to="/orders">Order Review</Link>
+          <Link to="/shipping">Shipping</Link>
           {user?.uid ? (
             <button className="logOut-btn" onClick={logOut}>
               Log Out
