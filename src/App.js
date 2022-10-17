@@ -1,5 +1,6 @@
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import './App.css';
+import Inventory from './Component/Inventory/Inventory';
 import Layout from './Component/Layout/Layout';
 import Login from './Component/Login/Login';
 import Orders from './Component/Orders/Orders';
@@ -23,10 +24,18 @@ function App() {
         { path: "/login", element: <Login /> },
         { path: "/register", element: <Register /> },
         {
+          path: "/inventory",
+          element: (
+            <PrivateRoute>
+              <Inventory/>
+            </PrivateRoute>
+          ),
+        },
+        {
           path: "/shipping",
           element: (
             <PrivateRoute>
-              <Shipping />
+              <Shipping/>
             </PrivateRoute>
           ),
         },

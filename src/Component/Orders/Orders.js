@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { ArrowRight } from 'react-bootstrap-icons';
 import { Link, Navigate, useLoaderData } from 'react-router-dom';
 import { removeFromDb } from '../../utilities/fakedb';
 import Cart from '../Cart/Cart';
@@ -36,7 +37,12 @@ const Orders = () => {
         </div>
         <div className="cart-container">
           <Cart cart={cart} deleteShoppingCart={deleteShoppingCart}>
-            <Link to='/shipping'><button>Shipping</button></Link>
+            <Link to="/shipping">
+              <button className="review-cart-btn">
+                <span>Shipping</span>
+                <ArrowRight className="cart-btn-icon" />
+              </button>
+            </Link>
           </Cart>
         </div>
       </div>
