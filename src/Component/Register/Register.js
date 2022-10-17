@@ -1,9 +1,11 @@
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import { Link } from 'react-router-dom';
+import { AuthContext } from '../../context/UserContext';
 import './Register.css'
 
 const Register = () => {
     const [error, setError] = useState('')
+    const { createUser } = useContext(AuthContext);
   //form submit
   const handleFormSubmit = (event) => {
     event.preventDefault();
@@ -12,7 +14,7 @@ const Register = () => {
     const email = form.email.value;
     const password = form.password.value;
     const confirmPassword = form.confirmPassword.value;
-    console.log(email, password, confirmPassword);
+    // console.log(email, password, confirmPassword);
     if(password.length < 8){
         setError('Please provide at least 8 character password');
         return;
@@ -21,6 +23,17 @@ const Register = () => {
         setError("Password didn't match");
         return;
     }
+
+    // create user with email and password
+    createUser(email, password)
+    .then(result => {
+        const user = result.user;
+        console.log(user);
+        form.reset()
+    })
+    .catch(error => {
+        console.log(error);
+    })
   };
   return (
     <div className="form-container" style={{height: '700px'}}>
