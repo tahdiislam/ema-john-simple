@@ -19,3 +19,13 @@
     color: #e38b07;
     text-decoration: underline;
 }
+
+.logOut-btn{
+    font-size: 1rem;
+    background-color: #e38b07;
+    color: #ffffff;
+    padding: 6px 10px;
+    border: none;
+    border-radius: 6px;
+    margin-left: 2rem;
+}

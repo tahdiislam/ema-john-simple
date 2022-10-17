@@ -1,11 +1,30 @@
-import React from 'react';
+import React, { useContext, useState } from 'react';
 import { Link } from 'react-router-dom';
+import { AuthContext } from '../../context/UserContext';
 import './Login.css'
 
 const Login = () => {
+    const [error, setError] = useState('')
+    const {signIn} = useContext(AuthContext)
     //form submit
     const handleFormSubmit = event => {
         event.preventDefault()
+        setError('')
+        const form = event.target;
+        const email = form.email.value;
+        const password = form.password.value;
+        // console.log(email, password);
+        // sign in 
+        signIn(email, password)
+        .then(result => {
+            const user = result.user;
+            console.log(user);
+            form.reset()
+        })
+        .catch(error => {
+            console.log(error);
+            setError(error.message.split("Firebase: Error (auth/").join("").split(').').join(''));
+        })
     }
     return (
         <div className="form-container">
@@ -29,6 +48,7 @@ const Login = () => {
                   Create New Account
                 </Link>
               </small>
+              <p className='text-error'>{error}</p>
             </div>
           </form>
         </div>

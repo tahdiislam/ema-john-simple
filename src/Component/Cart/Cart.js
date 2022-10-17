@@ -1,9 +1,9 @@
 import React from 'react';
-import { ArrowRight, Trash } from 'react-bootstrap-icons';
+import { Trash } from 'react-bootstrap-icons';
 // import { deleteShoppingCart } from '../../utilities/fakedb';
 import './Cart.css';
 
-const Cart = ({ cart, deleteShoppingCart, navigateCartReview }) => {
+const Cart = ({ cart, deleteShoppingCart, children}) => {
   // console.log(cart)
   let productQuantity = 0;
   let totalPrice = 0;
@@ -30,13 +30,7 @@ const Cart = ({ cart, deleteShoppingCart, navigateCartReview }) => {
         <span>Clear Cart</span>
         <Trash className="cart-btn-icon" />
       </button>
-      <button
-        onClick={navigateCartReview}
-        className="review-cart-btn"
-      >
-        <span>Cart Review</span>
-        <ArrowRight className="cart-btn-icon" />
-      </button>
+      {children}
     </div>
   );
 };

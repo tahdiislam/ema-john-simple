@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import { ArrowRight } from 'react-bootstrap-icons';
 import { useNavigate } from 'react-router-dom';
 import { addToDb, getStoredCart } from '../../utilities/fakedb';
 import Cart from '../Cart/Cart';
@@ -74,8 +75,12 @@ const Shop = () => {
           <Cart
             cart={cart}
             deleteShoppingCart={deleteShoppingCart}
-            navigateCartReview={navigateCartReview}
-          ></Cart>
+          >
+            <button onClick={navigateCartReview} className="review-cart-btn">
+              <span>Cart Review</span>
+              <ArrowRight className="cart-btn-icon" />
+            </button>
+          </Cart>
         </div>
       </section>
     );
