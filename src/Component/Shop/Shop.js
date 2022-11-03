@@ -1,35 +1,60 @@
 import React, { useEffect, useState } from "react";
 import { ArrowRight } from "react-bootstrap-icons";
-import { useNavigate } from "react-router-dom";
+import { useLoaderData, useNavigate } from "react-router-dom";
 import { addToDb, getStoredCart } from "../../utilities/fakedb";
 import Cart from "../Cart/Cart";
 import Product from "../Product/Product";
 import "./Shop.css";
 
 const Shop = () => {
-  const [products, setProducts] = useState([]);
   const [cart, setCart] = useState([]);
+  const [count, setCount] = useState(0);
+  const [storedProduct, setStoredProduct] = useState([]);
+  const [page, setPage] = useState(0);
+  const [size, setSize] = useState(10);
+  const pages = Math.ceil(count / size);
 
+  // load data with query
   useEffect(() => {
-    fetch("http://localhost:5000/products")
+    const url = `http://localhost:5000/products?page=${page}&size=${size}`;
+    fetch(url)
       .then((res) => res.json())
-      .then((data) => setProducts(data));
-  }, []);
+      .then((data) => {
+        setCount(data.count);
+        setStoredProduct(data.storedProduct);
+      });
+  }, [page, size]);
 
   useEffect(() => {
     const storedCart = getStoredCart();
     const newCart = [];
-    for (const id in storedCart) {
-      const addedProduct = products.find((product) => product._id === id);
-      if (addedProduct) {
-        const quantity = storedCart[id];
-        addedProduct.quantity = quantity;
-        // console.log(addedProduct)
-        newCart.push(addedProduct);
-      }
-      setCart(newCart);
-    }
-  }, [products]);
+    const ids = Object.keys(storedCart);
+    // console.log(ids);
+
+    // load cart product from db
+    fetch("http://localhost:5000/productsById", {
+      method: "POST",
+      headers: {
+        "content-type": "application/json",
+      },
+      body: JSON.stringify(ids),
+    })
+      .then((res) => res.json())
+      .then(data => {
+        // console.log("cart products", data);
+        for (const id in storedCart) {
+          const addedProduct = data.find((product) => product._id === id);
+          if (addedProduct) {
+            const quantity = storedCart[id];
+            addedProduct.quantity = quantity;
+            // console.log(addedProduct)
+            newCart.push(addedProduct);
+          }
+          setCart(newCart);
+        }
+      });
+    
+  }, [storedProduct]);
 
   const handlerAddToCart = (selectedProduct) => {
     // console.log(product)
@@ -63,7 +88,7 @@ const Shop = () => {
   return (
     <section className="shop-container">
       <div className="products">
-        {products.map((product) => (
+        {storedProduct.map((product) => (
           <Product
             key={product._id}
             product={product}
@@ -78,6 +103,28 @@ const Shop = () => {
             <ArrowRight className="cart-btn-icon" />
           </button>
         </Cart>
+      </div>
+      <div className="pagination">
+        {[...Array(pages).keys()].map((number) => (
+          <button
+            onClick={() => setPage(number)}
+            key={number}
+            className={page === number && "selected"}
+          >
+            {number + 1}
+          </button>
+        ))}
+        <select
+          className="select-field"
+          onClick={(e) => setSize(e.target.value)}
+        >
+          <option value="5">5</option>
+          <option value="10" selected>
+            10
+          </option>
+          <option value="15">15</option>
+          <option value="20">20</option>
+        </select>
       </div>
     </section>
   );

@@ -7,7 +7,7 @@ const notify = () => toast("Product deleted", { icon: "✅", duration: 1000 });
 
 const ReviewItem = ({product, deleteProduct}) => {
     const {id, img, name, price, quantity, shipping} = product
-    console.log(product);
+    // console.log(product);
     return (
       <div className="product-container">
         <img src={img} alt="Product Images" />

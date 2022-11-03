@@ -18,8 +18,10 @@ function App() {
       element: <Layout />,
       children: [
         { path: "*", element: <PageNotFound /> },
-        { path: "/", element: <Shop /> },
-        { path: "/shop", element: <Shop /> },
+        {
+          path: "/",
+          element: <Shop />,
+        },
         { path: "/orders", element: <Orders />, loader: productAndCartLoader },
         { path: "/login", element: <Login /> },
         { path: "/register", element: <Register /> },
@@ -27,7 +29,7 @@ function App() {
           path: "/inventory",
           element: (
             <PrivateRoute>
-              <Inventory/>
+              <Inventory />
             </PrivateRoute>
           ),
         },
@@ -35,7 +37,7 @@ function App() {
           path: "/shipping",
           element: (
             <PrivateRoute>
-              <Shipping/>
+              <Shipping />
             </PrivateRoute>
           ),
         },

@@ -11,7 +11,7 @@ const Header = () => {
       <nav className="header">
         <img src={logo} alt="" />
         <div className="header-menu">
-          <Link to="/shop">Shop</Link>
+          <Link to="/">Shop</Link>
           <Link to="/orders">Order Review</Link>
           <Link to="/inventory">Inventory</Link>
           {user?.uid ? (
